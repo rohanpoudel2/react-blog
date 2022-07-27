@@ -4,8 +4,9 @@ const Write = () => {
   return (
     <div className="write">
       <img
+        className='writeImg'
         src="https://images.unsplash.com/photo-1592285896110-8d88b5b3a5d8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80"
-        alt=""
+        alt="newBlogIMG"
       />
       <form className='writeForm'>
         <div className="writeFormGroup">
