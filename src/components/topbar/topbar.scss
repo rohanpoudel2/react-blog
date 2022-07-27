@@ -24,6 +24,14 @@
   }
 
   .topRight {
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: teal;
+      margin: 0px 5px;
+    }
+
     .topImg {
       width: 40px;
       height: 40px;
