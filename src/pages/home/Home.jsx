@@ -1,11 +1,16 @@
 import Header from '../../components/header/Header'
+import Posts from '../../components/posts/Posts'
+import SideBar from '../../components/sidebar/SideBar'
 import './home.scss'
 const Home = () => {
   return (
-    <div className="home">
+    <>
       <Header />
-      home page
-    </div>
+      <div className="home">
+        <Posts />
+        <SideBar />
+      </div>
+    </>
   )
 }
 
