@@ -8,7 +8,7 @@ router.post('/', async (req, res) => {
     const savedPost = await newPost.save();
     res.status(200).json({
       success: true,
-      data: savedPost
+      msg: savedPost
     });
   } catch (error) {
     res.status(500).json({
@@ -92,6 +92,36 @@ router.get('/:id', async (req, res) => {
     res.status(200).json({
       success: true,
       msg: post
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      msg: error
+    });
+  }
+});
+
+//Get All Posts
+
+router.get('/', async (req, res) => {
+  const username = req.query.user;
+  const cat = req.query.cat;
+  try {
+    let posts;
+    if (username) {
+      posts = await Post.find({ username });
+    } else if (cat) {
+      posts = await Post.find({
+        categories: {
+          $in: [cat]
+        }
+      });
+    } else {
+      posts = await Post.find();
+    }
+    res.status(200).json({
+      success: true,
+      msg: posts
     });
   } catch (error) {
     res.status(500).json({

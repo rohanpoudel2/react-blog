@@ -18,7 +18,7 @@ router.patch('/:id', async (req, res) => {
       })
       res.status(200).json({
         success: true,
-        data: updatedUser
+        msg: updatedUser
       });
     } catch (error) {
       res.status(500).json({
@@ -71,7 +71,7 @@ router.get('/:id', async (req, res) => {
     const { password, ...others } = user._doc;
     res.status(200).json({
       success: true,
-      data: others
+      msg: others
     });
   } catch (error) {
     res.status(500).json({
