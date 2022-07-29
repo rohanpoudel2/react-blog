@@ -1,22 +1,16 @@
 import './posts.scss'
 import Post from '../post/Post'
-import { Link } from 'react-router-dom'
 
-const Posts = () => {
+
+const Posts = ({ posts }) => {
+
   return (
     <div className="posts">
-      <Link className='link' to='/post/123' >
-        <Post />
-      </Link>
-      <Link className='link' to='/post/123' >
-        <Post />
-      </Link>
-      <Link className='link' to='/post/123' >
-        <Post />
-      </Link>
-      <Link className='link' to='/post/123' >
-        <Post />
-      </Link>
+      {
+        posts.map((p) => (
+          <Post key={p._id} post={p} />
+        ))
+      }
     </div>
   )
 }

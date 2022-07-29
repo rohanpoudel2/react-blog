@@ -1,66 +1,53 @@
+import axios from 'axios';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import './singlepost.scss'
 
 const SinglePost = () => {
+
+  const [post, setPost] = useState([]);
+
+  const location = useLocation()
+
+  const path = (location.pathname.split('/')[2]);
+
+  const getPost = async () => {
+    const res = await axios.get('/posts/' + path)
+    setPost(res.data.msg)
+  }
+
+  useEffect(() => {
+    getPost()
+  }, [path]);
+
   return (
     <div className="singlePost">
       <div className="singlePostWrapper">
-        <img
+        {post.photo && (<img
           className='singlePostImg'
-          src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2071&q=80"
+          src={post.photo}
           alt="singelPostImg"
-        />
+        />)}
+
         <h1 className="singlePostTitle">
-          Lorem ipsum dolor sit amet
+          {post.title}
           <div className="singlePostEdit">
             <i className="singlePostIcon fa-solid fa-pen-to-square"></i>
             <i className="singlePostIcon fa-solid fa-trash-can"></i>
           </div>
         </h1>
         <div className="singlePostInfo">
-          <span className='singlePostAuthor'>Author: <b>Rohan</b></span>
-          <span className='singlePostDate'>1 hours ago</span>
+          <span className='singlePostAuthor'>Author:
+            <Link className='link' to={`/?user=${post.username}`}>
+              <b>{post.username}</b>
+            </Link>
+          </span>
+          <span className='singlePostDate'>{new Date(post.createdAt).toDateString()}</span>
         </div>
         <p className='singlePostDesc'>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          Modi maxime, omnis iste sapiente vero rem aliquid enim
-          impedit nisi facere facilis neque autem atque libero
-          perspiciatis ipsam culpa, ad doloremque.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          Modi maxime, omnis iste sapiente vero rem aliquid enim
-          impedit nisi facere facilis neque autem atque libero
-          perspiciatis ipsam culpa, ad doloremque.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          Modi maxime, omnis iste sapiente vero rem aliquid enim
-          impedit nisi facere facilis neque autem atque libero
-          perspiciatis ipsam culpa, ad doloremque.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          Modi maxime, omnis iste sapiente vero rem aliquid enim
-          impedit nisi facere facilis neque autem atque libero
-          perspiciatis ipsam culpa, ad doloremque.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          Modi maxime, omnis iste sapiente vero rem aliquid enim
-          impedit nisi facere facilis neque autem atque libero
-          perspiciatis ipsam culpa, ad doloremque.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          Modi maxime, omnis iste sapiente vero rem aliquid enim
-          impedit nisi facere facilis neque autem atque libero
-          perspiciatis ipsam culpa, ad doloremque.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          Modi maxime, omnis iste sapiente vero rem aliquid enim
-          impedit nisi facere facilis neque autem atque libero
-          perspiciatis ipsam culpa, ad doloremque.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          Modi maxime, omnis iste sapiente vero rem aliquid enim
-          impedit nisi facere facilis neque autem atque libero
-          perspiciatis ipsam culpa, ad doloremque.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          Modi maxime, omnis iste sapiente vero rem aliquid enim
-          impedit nisi facere facilis neque autem atque libero
-          perspiciatis ipsam culpa, ad doloremque.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          Modi maxime, omnis iste sapiente vero rem aliquid enim
-          impedit nisi facere facilis neque autem atque libero
-          perspiciatis ipsam culpa, ad doloremque.
+          {post.desc}
         </p>
       </div>
     </div>

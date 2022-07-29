@@ -41,6 +41,11 @@
       color: white;
       border-radius: 10px;
       padding: 10px;
+
+      &:disabled {
+        cursor: not-allowed;
+        background-color: lightgray;
+      }
     }
   }
 
