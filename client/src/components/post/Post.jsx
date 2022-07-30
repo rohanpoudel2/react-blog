@@ -1,14 +1,16 @@
 import './post.scss';
 import { Link } from 'react-router-dom'
+import { nanoid } from 'nanoid'
 
 const post = ({ post }) => {
+  const PF = 'http://localhost:3001/images/'
   return (
     <div className="post">
       {
         post.photo && (
           <img
             className='postImg'
-            src={post.photo}
+            src={PF + post.photo}
             alt="postImg"
           />
         )
@@ -16,7 +18,9 @@ const post = ({ post }) => {
       <div className="postInfo">
         <div className="postCats">
           {post.categories.map((c) => (
-            <span className="postCat">{c.name}</span>
+            <div key={nanoid()}>
+              <span className="postCat">{c.name}</span>
+            </div>
           ))}
         </div>
         <Link className='link' to={`/post/${post._id}`}>
@@ -27,8 +31,8 @@ const post = ({ post }) => {
         <p className="postDesc">
           {post.desc}
         </p>
-      </div>
-    </div>
+      </div >
+    </div >
   )
 }
 

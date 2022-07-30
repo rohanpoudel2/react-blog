@@ -16,6 +16,7 @@ router.patch('/:id', async (req, res) => {
       }, {
         new: true
       })
+      await Post.updateMany({ username: updatedUser.username })
       res.status(200).json({
         success: true,
         msg: updatedUser
@@ -35,7 +36,7 @@ router.patch('/:id', async (req, res) => {
 });
 //Delete
 router.delete('/:id', async (req, res) => {
-  if (req.body.userId == req.params.id) {
+  if (req.body.userId === req.params.id) {
     try {
       const user = await Users.findById(req.params.id);
       if (user) {

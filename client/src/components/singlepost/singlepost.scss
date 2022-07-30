@@ -6,6 +6,49 @@
   .singlePostWrapper {
     padding: 20px;
     padding-right: 0px;
+    display: flex;
+    flex-direction: column;
+
+    .singlePostTitleInput {
+      margin: 10px;
+      font-family: $font-2;
+      font-size: 28px;
+      text-align: center;
+      padding: 20px;
+      padding-right: 0;
+      display: flex;
+      flex-direction: column;
+      border: none;
+      color: gray;
+      border-bottom: 1px solid lightgray;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .singlePostDescInput {
+      border: none;
+      color: #666;
+      font-size: 18px;
+      line-height: 25px;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .singlePostButton {
+      width: 100px;
+      border: none;
+      background-color: teal;
+      padding: 5px;
+      color: #fff;
+      border-radius: 5px;
+      cursor: pointer;
+      align-self: flex-end;
+      margin-top: 20px;
+    }
 
     .singlePostImg {
       width: 100%;

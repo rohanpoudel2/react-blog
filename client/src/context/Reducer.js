@@ -22,6 +22,40 @@ const Reducer = (state, action) => {
         error: true
       };
     }
+    case 'Update_Start': {
+      return {
+        ...state,
+        isFetching: true
+      };
+    }
+    case 'Update_Success': {
+      return {
+        user: action.payload,
+        isFetching: false,
+        error: false
+      };
+    }
+    case 'Update_Failure': {
+      return {
+        user: state.user,
+        isFetching: false,
+        error: true
+      };
+    }
+    case 'Delete_User': {
+      return {
+        user: null,
+        isFetching: false,
+        error: false
+      };
+    }
+    case 'Logout': {
+      return {
+        user: null,
+        isFetching: false,
+        error: false
+      };
+    }
     default: {
       return state;
     }
